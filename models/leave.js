@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate (models) {
       // define association here
-      Leave.belongsTo(models.User, { foreignKey: 'applicant' })
+      Leave.belongsTo(models.User, { foreignKey: 'applicantId' })
       Leave.belongsTo(models.User, { foreignKey: 'level1SupervisorId' })
       Leave.belongsTo(models.User, { foreignKey: 'level2SupervisorId' })
     }
@@ -17,13 +17,13 @@ module.exports = (sequelize, DataTypes) => {
   Leave.init({
     leaveDate: DataTypes.DATE,
     content: DataTypes.TEXT,
-    applicant: DataTypes.INTEGER,
+    applicantId: DataTypes.INTEGER,
     isActived: DataTypes.BOOLEAN,
     isCompleted: DataTypes.BOOLEAN,
     level1SupervisorId: DataTypes.INTEGER,
     level1Approved: DataTypes.BOOLEAN,
     level2SupervisorId: DataTypes.INTEGER,
-    level2Approve: DataTypes.BOOLEAN,
+    level2Approved: DataTypes.BOOLEAN,
     rejectReason: DataTypes.TEXT
   }, {
     sequelize,

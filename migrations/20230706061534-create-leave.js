@@ -15,7 +15,7 @@ module.exports = {
       content: {
         type: Sequelize.TEXT
       },
-      applicant: {
+      applicant_id: {
         type: Sequelize.INTEGER
       },
       is_actived: {
@@ -37,7 +37,7 @@ module.exports = {
       level2_supervisor_id: {
         type: Sequelize.INTEGER
       },
-      level2_approve: {
+      level2_approved: {
         type: Sequelize.BOOLEAN
       },
       reject_reason: {
