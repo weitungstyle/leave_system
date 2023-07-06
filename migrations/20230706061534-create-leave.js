@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up (queryInterface, Sequelize) {
     await queryInterface.createTable('Leaves', {
       id: {
         allowNull: false,
@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      leaveDate: {
+      leave_date: {
         type: Sequelize.DATE
       },
       content: {
@@ -18,42 +18,42 @@ module.exports = {
       applicant: {
         type: Sequelize.INTEGER
       },
-      isActived: {
+      is_actived: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: true
       },
-      isCompleted: {
+      is_completed: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: false
       },
-      level1Supervisor: {
+      level1_supervisor_id: {
         type: Sequelize.INTEGER
       },
-      level1Approved: {
+      level1_approved: {
         type: Sequelize.BOOLEAN
       },
-      level2Supervisor: {
+      level2_supervisor_id: {
         type: Sequelize.INTEGER
       },
-      level2Approve: {
+      level2_approve: {
         type: Sequelize.BOOLEAN
       },
-      rejectReason: {
+      reject_reason: {
         type: Sequelize.TEXT
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
+    })
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Leaves');
+  async down (queryInterface, Sequelize) {
+    await queryInterface.dropTable('Leaves')
   }
-};
+}

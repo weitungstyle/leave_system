@@ -1,7 +1,5 @@
 'use strict'
-const {
-  Model
-} = require('sequelize')
+const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -12,12 +10,14 @@ module.exports = (sequelize, DataTypes) => {
     static associate (models) {
       // define association here
       User.hasMany(models.Leave, { foreignKey: 'applicant' })
-      User.belongsToMany(models.User, {
+      User.hasMany(models.Leave, { foreignKey: 'level1SupervisorId' })
+      User.hasMany(models.Leave, { foreignKey: 'level2SupervisorId' })
+      User.hasOne(models.User, {
         through: models.Supervisor,
         foreignKey: 'supervisorId',
         as: 'subordinate'
       })
-      User.belongsToMany(models.User, {
+      User.hasMany(models.User, {
         through: models.Supervisor,
         foreignKey: 'subordinateId',
         as: 'supervisor'
@@ -36,7 +36,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
-    tableName: 'Users'
+    tableName: 'Users',
+    underscored: true
   })
   return User
 }

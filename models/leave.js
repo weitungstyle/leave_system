@@ -1,7 +1,5 @@
 'use strict'
-const {
-  Model
-} = require('sequelize')
+const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Leave extends Model {
     /**
@@ -12,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate (models) {
       // define association here
       Leave.belongsTo(models.User, { foreignKey: 'applicant' })
-      // Leave.belongsTo(models.Supervisor, { foreignKey: 'level1Supervisor' })
-      // Leave.belongsTo(models.Supervisor, { foreignKey: 'level2Supervisor' })
+      Leave.belongsTo(models.User, { foreignKey: 'level1SupervisorId' })
+      Leave.belongsTo(models.User, { foreignKey: 'level2SupervisorId' })
     }
   }
   Leave.init({
@@ -22,15 +20,16 @@ module.exports = (sequelize, DataTypes) => {
     applicant: DataTypes.INTEGER,
     isActived: DataTypes.BOOLEAN,
     isCompleted: DataTypes.BOOLEAN,
-    level1Supervisor: DataTypes.INTEGER,
+    level1SupervisorId: DataTypes.INTEGER,
     level1Approved: DataTypes.BOOLEAN,
-    level2Supervisor: DataTypes.INTEGER,
+    level2SupervisorId: DataTypes.INTEGER,
     level2Approve: DataTypes.BOOLEAN,
     rejectReason: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Leave',
-    tableName: 'Leaves'
+    tableName: 'Leaves',
+    underscored: true
   })
   return Leave
 }
